@@ -1,11 +1,14 @@
 public class Rocket implements SpaceShip{
 
+
     private int rocketWeight;
     private int totalWeight;
+    private int currentWeight;
 
-    public Rocket(int rocketWeight, int totalWeight){
+    public Rocket(int rocketWeight, int totalWeight, int currentWeight){
         this.rocketWeight = rocketWeight;
         this.totalWeight = totalWeight;
+        this.currentWeight = currentWeight;
            }
 
     @Override
@@ -35,10 +38,8 @@ public class Rocket implements SpaceShip{
     @Override
     public int carry(int item) {
         // TODO Auto-generated method stub
-
-
-
-        return rocketWeight + item;
+        currentWeight = rocketWeight + item;
+        return currentWeight;
     }
     
     
