@@ -1,20 +1,33 @@
 public class Rocket implements SpaceShip{
 
-
     private int rocketWeight;
     private int totalWeight;
     private int currentWeight;
 
-    public Rocket(int rocketWeight, int totalWeight, int currentWeight){
+    //Setter
+    public void setRocket(int rocketWeight, int totalWeight, int currentWeight){
         this.rocketWeight = rocketWeight;
         this.totalWeight = totalWeight;
         this.currentWeight = currentWeight;
            }
 
+    //Getters
+
+    public int getRocketWeight() {
+        return rocketWeight;
+    }
+
+    public int getTotalWeight() {
+        return totalWeight;
+    }
+
+    public int getCurrentWeight() {
+        return currentWeight;
+    }
+
     @Override
     public boolean launch() {
         // TODO Auto-generated method stub
-
         return true;
     }
 
@@ -25,22 +38,25 @@ public class Rocket implements SpaceShip{
     }
 
     @Override
-    public boolean canCarry(int item) {
+    public boolean canCarry(Item item) {
         // TODO Auto-generated method stub
-            int maxCargoWeight = totalWeight - rocketWeight;
-            if(item > maxCargoWeight){
-                return true;
-            }else{
-                return false;
-            }
+
+        int maxCargoWeight = getTotalWeight() - getRocketWeight();
+        if(item.getItemWeight() < maxCargoWeight && (rocketWeight + item.getItemWeight()) < maxCargoWeight){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     @Override
-    public int carry(int item) {
+    public int carry(Item item) {
         // TODO Auto-generated method stub
-        currentWeight = rocketWeight + item;
-        return currentWeight;
+
+
+        return getRocketWeight() + item.getItemWeight();
     }
-    
+
     
 }

@@ -2,24 +2,16 @@ import java.util.Random;
 
 public class U1 extends Rocket {
 
-    private int rocketWeight;
-    private int totalWeight;
-    private int currentWeight;
-
     Random random = new Random();
-
-    public U1(int rocketWeight, int totalWeight, int currentWeight) {
-        super(rocketWeight, totalWeight, currentWeight);
-        //TODO Auto-generated constructor stub
-    }
+    Rocket rocket = new Rocket();
 
     public boolean launch() {
         int chanceExplosion;
-        chanceExplosion = 5 * (currentWeight/totalWeight);
+        chanceExplosion = 5 * (rocket.getCurrentWeight()/rocket.getTotalWeight());
 
         int randomNumber = random.nextInt(100)+1;
 
-        if (randomNumber < chanceExplosion){
+        if (randomNumber >= chanceExplosion){
 
             return false;
         }else{
@@ -31,11 +23,11 @@ public class U1 extends Rocket {
 
     public boolean land() {
         int chanceExplosion;
-        chanceExplosion = 1 * (currentWeight/totalWeight);
+        chanceExplosion = 1 * (rocket.getCurrentWeight()/rocket.getTotalWeight());
 
         int randomNumber = random.nextInt(100)+1;
 
-        if (randomNumber < chanceExplosion){
+        if (randomNumber >= chanceExplosion){
 
             return false;
         }else{
