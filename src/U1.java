@@ -7,7 +7,7 @@ public class U1 extends Rocket {
 
     public boolean launch() {
         int chanceExplosion;
-        chanceExplosion = 5 * (rocket.getCurrentWeight()/rocket.getTotalWeight());
+        chanceExplosion = 5 * (rocket.getCurrentWeight()/rocket.getMaxWeight());
 
         int randomNumber = random.nextInt(100)+1;
 
@@ -23,7 +23,7 @@ public class U1 extends Rocket {
 
     public boolean land() {
         int chanceExplosion;
-        chanceExplosion = 1 * (rocket.getCurrentWeight()/rocket.getTotalWeight());
+        chanceExplosion = 1 * (rocket.getCurrentWeight()/rocket.getMaxWeight());
 
         int randomNumber = random.nextInt(100)+1;
 

@@ -1,14 +1,18 @@
 public class Rocket implements SpaceShip{
 
     private int rocketWeight;
-    private int totalWeight;
+    private int maxWeight;
     private int currentWeight;
+    private int rocketCost;
+
 
     //Setter
-    public void setRocket(int rocketWeight, int totalWeight, int currentWeight){
+    public void setRocket(int rocketWeight, int maxWeight, int currentWeight, int rocketCost){
         this.rocketWeight = rocketWeight;
-        this.totalWeight = totalWeight;
+        this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
+        this.rocketCost = rocketCost;
+      
            }
 
     //Getters
@@ -17,13 +21,19 @@ public class Rocket implements SpaceShip{
         return rocketWeight;
     }
 
-    public int getTotalWeight() {
-        return totalWeight;
+    public int getMaxWeight() {
+        return maxWeight;
     }
 
     public int getCurrentWeight() {
         return currentWeight;
     }
+
+    public int getRocketCost() {
+        return rocketCost;
+    }
+
+
 
     @Override
     public boolean launch() {
@@ -41,7 +51,7 @@ public class Rocket implements SpaceShip{
     public boolean canCarry(Item item) {
         // TODO Auto-generated method stub
 
-        int maxCargoWeight = getTotalWeight() - getRocketWeight();
+        int maxCargoWeight = getMaxWeight() - getRocketWeight();
         if(item.getItemWeight() < maxCargoWeight && (rocketWeight + item.getItemWeight()) < maxCargoWeight){
             return true;
         }else{
@@ -53,7 +63,6 @@ public class Rocket implements SpaceShip{
     @Override
     public int carry(Item item) {
         // TODO Auto-generated method stub
-
 
         return getRocketWeight() + item.getItemWeight();
     }
