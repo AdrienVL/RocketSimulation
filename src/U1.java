@@ -11,6 +11,9 @@ public class U1 extends Rocket {
 
         int randomNumber = random.nextInt(100)+1;
 
+        System.out.println("random: " + randomNumber);
+        System.out.println("Chance: " + chanceExplosion);
+
         if (randomNumber >= chanceExplosion){
 
             return false;

@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Simulation {
@@ -19,7 +21,7 @@ public class Simulation {
       while (items.hasNextLine()) {
 
         String data = items.nextLine();
-        String[] arrayOfItem = data.split(data, '=');
+        String[] arrayOfItem = data.split("=", 2);
         int kilos = Integer.parseInt(arrayOfItem[1]);
         Item item = new Item();
         item.setItem(arrayOfItem[0], kilos);
@@ -27,7 +29,7 @@ public class Simulation {
         
       }
 
-      items.close();
+        items.close();
         return listItems;
 
     }
@@ -38,29 +40,24 @@ public class Simulation {
         Rocket rocket = new Rocket();
 
         int currentWeight = 0;
-        int itemTracker = 0;
 
 
-        while(itemTracker != listItems.size()){
+        for(int i = 0; i < listItems.size(); i++){
+
+            if(rocket.canCarry(listItems.get(i))){
+            
+                currentWeight +=rocket.carry(listItems.get(i));
+            }else{
+                rocket.setRocket(10, 18, currentWeight, 100);
+                listRockets.add(rocket);
+                currentWeight = 0;
+                currentWeight +=rocket.carry(listItems.get(i));
 
 
-            for(int i = 0; i < listItems.size(); i++){
-
-                if(rocket.canCarry(listItems.get(i))){
-                
-                    itemTracker++;
-                    currentWeight +=rocket.carry(listItems.get(i));
-                }else{
-                    rocket.setRocket(10, 18, currentWeight, 100);
-                    listRockets.add(rocket);
-                    currentWeight = 0;
-                    currentWeight +=rocket.carry(listItems.get(i));
-
-
-                }
             }
-
         }
+
+        
 
           return listRockets;
   
@@ -72,29 +69,25 @@ public class Simulation {
         Rocket rocket = new Rocket();
 
         int currentWeight = 0;
-        int itemTracker = 0;
 
 
-        while(itemTracker <= listItems.size()){
+        for(int i = 0; i < listItems.size(); i++){
+
+            if(rocket.canCarry(listItems.get(i))){
+            
+                currentWeight +=rocket.carry(listItems.get(i));
+            }else{
+                rocket.setRocket(18, 29, currentWeight, 120);
+                listRockets.add(rocket);
+                currentWeight = 0;
+                currentWeight +=rocket.carry(listItems.get(i));
 
 
-            for(int i = 0; i < listItems.size(); i++){
-
-                if(rocket.canCarry(listItems.get(i))){
-                
-                    itemTracker++;
-                    currentWeight +=rocket.carry(listItems.get(i));
-                }else{
-                    rocket.setRocket(18, 29, currentWeight, 120);
-                    listRockets.add(rocket);
-                    currentWeight = 0;
-                    currentWeight +=rocket.carry(listItems.get(i));
-
-
-                }
             }
+        
 
         }
+
 
           return listRockets;
   
@@ -102,18 +95,25 @@ public class Simulation {
 
         public int runSimulation(ArrayList<Rocket> listRockets){
 
+            U1 u1 = new U1();
+            U2 u2 = new U2();
 
             int budget = 0;
             for(Rocket rocket : listRockets){
-
-                if(!rocket.launch() || !rocket.land()){
-                    budget += rocket.getRocketCost();
-                    continue;
+                if(rocket.getRocketCost() == 100){
+                    if(u1.launch() == false || u1.land() == false){
+                        budget += rocket.getRocketCost();
+    
+                    }
+                }if(rocket.getRocketCost() == 120){
+                    if(u2.launch() == false || u2.land() == false){
+                        budget += rocket.getRocketCost();
+    
+                    }
 
                 }
 
             }
-            
 
             return budget;
     
