@@ -5,9 +5,9 @@ public class U2 extends Rocket{
     Random random = new Random();
     Rocket rocket = new Rocket();
 
-    public boolean launch() {
-        int chanceExplosion;
-        chanceExplosion = 4 * (rocket.getCurrentWeight()/rocket.getMaxWeight());
+    public boolean launch(int currentWeight, int maxWeight) {
+        double chanceExplosion;
+        chanceExplosion = (0.04 * ((currentWeight/maxWeight))) * 100;
 
         int randomNumber = random.nextInt(100)+1;
 
@@ -21,9 +21,9 @@ public class U2 extends Rocket{
 
     }
 
-    public boolean land() {
-        int chanceExplosion;
-        chanceExplosion = 8 * (rocket.getCurrentWeight()/rocket.getMaxWeight());
+    public boolean land(int currentWeight, int maxWeight) {
+        double chanceExplosion;
+        chanceExplosion = (0.08 * (currentWeight/maxWeight))*100;
 
         int randomNumber = random.nextInt(100)+1;
 

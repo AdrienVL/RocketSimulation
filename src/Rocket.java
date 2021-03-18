@@ -36,13 +36,13 @@ public class Rocket implements SpaceShip{
 
 
     @Override
-    public boolean launch() {
+    public boolean launch(int currentWeight, int maxWeight) {
         // TODO Auto-generated method stub
         return true;
     }
 
     @Override
-    public boolean land() {
+    public boolean land(int currentWeight, int maxWeight) {
         // TODO Auto-generated method stub
         return true;
     }
