@@ -37,19 +37,24 @@ public class Simulation {
         ArrayList<Rocket> listRockets = new ArrayList<Rocket>();
         Rocket rocket = new Rocket();
 
-        int currentWeight = 0;
+        int currentWeight = 12;
+
+        rocket.setRocket(10, 18, currentWeight, 100);
 
 
         for(int i = 0; i < listItems.size(); i++){
 
             if(rocket.canCarry(listItems.get(i))){
 
+                //How to deal with updating object
             
-                currentWeight +=rocket.carry(listItems.get(i));
+                currentWeight += rocket.carry(listItems.get(i));
+                System.out.println("CURRENT WEIGHT can Carry: " + currentWeight);
+
             }else{
                 rocket.setRocket(10, 18, currentWeight, 100);
                 listRockets.add(rocket);
-                currentWeight = 0;
+                currentWeight = 10;
                 currentWeight +=rocket.carry(listItems.get(i));
 
 

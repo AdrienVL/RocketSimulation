@@ -51,8 +51,16 @@ public class Rocket implements SpaceShip{
     public boolean canCarry(Item item) {
         // TODO Auto-generated method stub
 
-        int maxCargoWeight = getMaxWeight() - getRocketWeight();
-        if(item.getItemWeight() < maxCargoWeight && (rocketWeight + item.getItemWeight()) < maxCargoWeight){
+        // int maxCargoWeight = getMaxWeight() - getRocketWeight();
+        System.out.println("===================");
+        System.out.println("GET Rocket WEIGHT: " + getRocketWeight());
+        System.out.println("GET Current WEIGHT: " + getCurrentWeight());
+        System.out.println("GET Item WEIGHT: " + item.getItemWeight());
+        System.out.println("GET Max WEIGHT: " + getMaxWeight());
+        System.out.println("===================");
+
+
+        if(getCurrentWeight() + item.getItemWeight() <= getMaxWeight()){
             return true;
         }else{
             return false;
@@ -64,7 +72,9 @@ public class Rocket implements SpaceShip{
     public int carry(Item item) {
         // TODO Auto-generated method stub
 
-        return getRocketWeight() + item.getItemWeight();
+
+
+        return item.getItemWeight();
     }
 
     
